@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PAH GTA Menu</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #141e30, #243b55);
+}
+
+.logo {
+  font-size: 6em;
+  font-weight: 900;
+  letter-spacing: 10px;
+  background: linear-gradient(45deg, #00f2fe, #4facfe, #43e97b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card {
+  text-align: center;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  color: #333;
+  cursor: pointer;
+}
+
+#qrcode {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#homePage {
+  display: none;
+  height: 100vh;
+  background: url('https://images6.alphacoders.com/555/555100.jpg') no-repeat center center/cover;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.menu {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+}
+
+.menu h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.menu button {
+  display: block;
+  margin: 10px 0;
+  padding: 15px 30px;
+  font-size: 18px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  text-align: left;
+  width: 200px;
+}
+
+.menu button:hover {
+  background: white;
+  color: black;
+}
+</style>
+</head>
+
+<body>
+
+<div id="mainPage" class="screen">
+  <div class="card">
+    <div class="logo">PAH</div>
+    <p>Scan to open on your phone 📱</p>
+    <div id="qrcode"></div>
+    <button onclick="enterSite()">Enter</button>
+  </div>
+</div>
+
+<div id="homePage">
+  <div class="overlay"></div>
+
+  <div class="menu">
+    <h1>PAH V</h1>
+    <button onclick="alert('Starting Game...')">Start Game</button>
+    <button onclick="alert('Loading Save...')">Load Game</button>
+    <button onclick="alert('Opening Settings...')">Settings</button>
+    <button onclick="goBack()">Exit</button>
+  </div>
+</div>
+
+<script>
+function enterSite() {
+  document.getElementById("mainPage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+}
+
+function goBack() {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("mainPage").style.display = "flex";
+}
+
+// Generate QR code (uses current file path)
+new QRCode(document.getElementById("qrcode"), {
+  text: window.location.href,
+  width: 150,
+  height: 150
+});
+</script>
+
+</body>
+</html>
